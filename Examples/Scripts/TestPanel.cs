@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
-
+using Longshilin.RecyclingListView;
 
 public class TestPanel : MonoBehaviour
 {
     public RecyclingListView scrollList;
+
     /// <summary>
     /// 列表数据
     /// </summary>
@@ -44,26 +45,16 @@ public class TestPanel : MonoBehaviour
         addItemBtn.onClick.AddListener(AddItem);
 
         // 将目标行移动到列表的顶部、中心、底部
-        moveToTopBtn.onClick.AddListener(() => 
-        {
-            MoveToRow(RecyclingListView.ScrollPosType.Top);
-        });
+        moveToTopBtn.onClick.AddListener(() => { MoveToRow(RecyclingListView.ScrollPosType.Top); });
 
-        moveToCenterBtn.onClick.AddListener(() =>
-        {
-            MoveToRow(RecyclingListView.ScrollPosType.Center);
-        });
+        moveToCenterBtn.onClick.AddListener(() => { MoveToRow(RecyclingListView.ScrollPosType.Center); });
 
-        moveToBottomBtn.onClick.AddListener(() =>
-        {
-            MoveToRow(RecyclingListView.ScrollPosType.Bottom);
-        });
+        moveToBottomBtn.onClick.AddListener(() => { MoveToRow(RecyclingListView.ScrollPosType.Bottom); });
 
         createRowCntInput.text = "111";
         CreateList();
     }
 
-   
 
     /// <summary>
     /// item更新回调
@@ -83,11 +74,13 @@ public class TestPanel : MonoBehaviour
             Debug.LogError("请输入行数");
             return;
         }
+
         var rowCnt = int.Parse(createRowCntInput.text);
 
         data.Clear();
         // 模拟数据
-        string[] randomTitles = new[] {
+        string[] randomTitles = new[]
+        {
             "黄沙百战穿金甲，不破楼兰终不还",
             "且将新火试新茶，诗酒趁年华",
             "苟利国家生死以，岂因祸福避趋之",
@@ -126,6 +119,7 @@ public class TestPanel : MonoBehaviour
             Debug.LogError("请输入行号");
             return;
         }
+
         var rowIndex = int.Parse(deleteItemInput.text);
         data.RemoveAll(item => (item.Row == rowIndex));
 
@@ -145,9 +139,8 @@ public class TestPanel : MonoBehaviour
             Debug.LogError("请输入行号");
             return;
         }
+
         var rowIndex = int.Parse(moveToRowInput.text);
         scrollList.ScrollToRow(rowIndex, posType);
     }
 }
-
-

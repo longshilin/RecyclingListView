@@ -5,7 +5,7 @@ This is a fork of [UnityRecyclingListView](https://github.com/sinbad/UnityRecycl
 
 ## License (MIT)
 
-Copyright (c) 2019 Steve Streeting
+Copyright (c) 2021 ShiLin Long
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,4 +1,5 @@
 using UnityEngine.UI;
+using Longshilin.RecyclingListView;
 
 public class TestChildItem : RecyclingListViewItem
 {
@@ -6,9 +7,10 @@ public class TestChildItem : RecyclingListViewItem
     public Text rowText;
 
     private TestChildData childData;
+
     public TestChildData ChildData
     {
-        get { return childData; }
+        get => childData;
         set
         {
             childData = value;
@@ -19,6 +21,9 @@ public class TestChildItem : RecyclingListViewItem
 }
 
 
+/// <summary>
+/// ListView Item Data
+/// </summary>
 public struct TestChildData
 {
     public string Title;

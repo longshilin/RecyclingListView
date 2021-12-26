@@ -1,9 +1,14 @@
 {
   "name": "longshilin.recyclinglistview",
-  "version": "1.0.0",
   "displayName": "Recycling List View",
-  "description": "Unity recyclable list views. Based on Sinbad's https://github.com/sinbad/UnityRecyclingListView.",
+  "version": "1.0.0",
   "unity": "2020.3",
+  "unityRelease": "",
+  "description": "Unity recyclable list views. Based on Sinbad's https://github.com/sinbad/UnityRecyclingListView.",
+  "keywords": [
+    "Recycling",
+    "List View"
+  ],
   "author": {
     "name": "ShiLin Long",
     "email": "583297550@qq.com",

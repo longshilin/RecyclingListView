@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
+using Longshilin.RecyclingListView;
 
 
 public class CardTestPanel : MonoBehaviour
@@ -141,6 +142,6 @@ public class CardTestPanel : MonoBehaviour
         }
 
         var rowIndex = int.Parse(moveToRowInput.text);
-        scrollList.ScrollToRow(rowIndex + 1, posType);
+        scrollList.ScrollToRow(rowIndex, posType);
     }
 }

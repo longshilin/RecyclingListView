@@ -1,3 +1,4 @@
+using Longshilin.RecyclingListView;
 using UnityEngine.UI;
 
 public class CardTestChildItem : CardRecyclingListViewItem
@@ -9,7 +10,7 @@ public class CardTestChildItem : CardRecyclingListViewItem
 
     public TestChildData ChildData
     {
-        get { return _childData; }
+        get => _childData;
         set
         {
             _childData = value;
