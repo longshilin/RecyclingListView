@@ -3,6 +3,11 @@
 
 This is a fork of [UnityRecyclingListView](https://github.com/sinbad/UnityRecyclingListView) prepared so that I can use it as a submodule. Refer to the original for more info.
 
+Add to unity manifest.json:
+```json
+"longshilin.recyclinglistview": "https://github.com/longshilin/RecyclingListView.git",
+```
+
 ## License (MIT)
 
 Copyright (c) 2021 ShiLin Long
