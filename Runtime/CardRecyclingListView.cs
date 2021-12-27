@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 namespace Longshilin.RecyclingListView
@@ -11,7 +12,18 @@ namespace Longshilin.RecyclingListView
     {
         private bool _needFixDrag;
         private float _offset;
-        private int _index;
+        private int _previousIndex = -1;
+
+        private int _currentIndex; // 居中的item序号
+        public int CurrentIndex => _currentIndex;
+
+        private UnityAction _onCurrentItemChanged; // 列表滑动更新时回调方法
+
+        public UnityAction OnCurrentItemChanged
+        {
+            get => _onCurrentItemChanged;
+            set => _onCurrentItemChanged = value;
+        }
 
         private void LateUpdate()
         {
@@ -33,7 +45,9 @@ namespace Longshilin.RecyclingListView
                     childItem.NotifyCurrentAssignment(this, childItem.CurrentRow);
             }
 
-            var rowScrollPosition = GetRowScrollPosition(_index, posType);
+            if (_previousIndex != _currentIndex) _onCurrentItemChanged?.Invoke();
+
+            var rowScrollPosition = GetRowScrollPosition(_currentIndex + StartOffsetIndex, posType);
             float time = 0;
             while (time < 1f)
             {
@@ -55,11 +69,20 @@ namespace Longshilin.RecyclingListView
 
                 yield return 0;
             }
+
+            _previousIndex = _currentIndex;
+        }
+
+        public override void Clear()
+        {
+            base.Clear();
+            _previousIndex = _currentIndex = -1;
         }
 
         public override void ScrollToRow(int row, ScrollPosType posType)
         {
-            base.ScrollToRow(row + StartOffsetIndex, posType);
+            _currentIndex = row + StartOffsetIndex;
+            base.ScrollToRow(_currentIndex, posType);
         }
 
         protected override void UpdateChild(RecyclingListViewItem child, int rowIdx)
@@ -73,7 +96,7 @@ namespace Longshilin.RecyclingListView
         {
             if (_offset > offset)
             {
-                _index = index + StartOffsetIndex;
+                _currentIndex = index;
                 _offset = offset;
             }
         }

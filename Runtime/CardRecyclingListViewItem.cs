@@ -14,7 +14,6 @@ namespace Longshilin.RecyclingListView
         [Tooltip("选中对象相对大小比例"), Range(0.5f, 1.5f)]
         public float m_PitchScale = 0;
 
-        public float Offset;
         private float _offset; // item与中心点的偏移值
 
         public override void NotifyCurrentAssignment(RecyclingListView v, int row)
@@ -42,7 +41,6 @@ namespace Longshilin.RecyclingListView
 
             sizeOffset = Math.Min(sizeOffset, 1);
             m_Content.localScale = Vector3.one * ((m_PitchScale - 1) * (1 - sizeOffset) + 1);
-            Offset = _offset;
         }
     }
 }
