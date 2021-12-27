@@ -61,20 +61,12 @@ namespace Longshilin.RecyclingListView
                     rowCount = value;
                     // 先禁用滚动变化
                     ignoreScrollChange = true;
-                    // 更新宽度或高度
-                    if (_scrollType == RecyclingListScrollType.Horizontal)
-                    {
-                        UpdateContentWidth();
-                    }
-                    else
-                    {
-                        UpdateContentHeight();
-                    }
-
                     // 重新启用滚动变化
                     ignoreScrollChange = false;
                     // 重新计算item
                     ReorganiseContent(true);
+                    // 更新宽度或高度
+                    UpdateContentHeight();
                 }
             }
         }
@@ -471,27 +463,22 @@ namespace Longshilin.RecyclingListView
         }
 
         /// <summary>
-        /// 更新content的宽度
-        /// </summary>
-        protected virtual void UpdateContentWidth()
-        {
-            // 列表高度
-            float width = m_ChildObj.RectTransform.rect.width * rowCount + (rowCount - 1) * m_RowPadding;
-            // 更新content的宽度
-            var sz = scrollRect.content.sizeDelta;
-            scrollRect.content.sizeDelta = new Vector2(width, sz.y);
-        }
-
-        /// <summary>
-        /// 更新content的高度
+        /// 更新content
         /// </summary>
         protected virtual void UpdateContentHeight()
         {
-            // 列表高度
-            float height = m_ChildObj.RectTransform.rect.height * rowCount + (rowCount - 1) * m_RowPadding;
-            // 更新content的高度
-            var sz = scrollRect.content.sizeDelta;
-            scrollRect.content.sizeDelta = new Vector2(sz.x, height);
+            if (_scrollType == RecyclingListScrollType.Horizontal)
+            {
+                var width = m_ChildObj.RectTransform.rect.width * rowCount + (rowCount - 1) * m_RowPadding;
+                var sz = scrollRect.content.sizeDelta;
+                scrollRect.content.sizeDelta = new Vector2(width + StartOffset * 2, sz.y);
+            }
+            else
+            {
+                var height = m_ChildObj.RectTransform.rect.height * rowCount + (rowCount - 1) * m_RowPadding;
+                var sz = scrollRect.content.sizeDelta;
+                scrollRect.content.sizeDelta = new Vector2(sz.x, height + StartOffset * 2);
+            }
         }
 
         protected virtual void DisableAllChildren()
