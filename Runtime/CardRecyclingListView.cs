@@ -47,7 +47,7 @@ namespace Longshilin.RecyclingListView
 
             if (_previousIndex != _currentIndex) _onCurrentItemChanged?.Invoke();
 
-            var rowScrollPosition = GetRowScrollPosition(_currentIndex + StartOffsetIndex, posType);
+            var rowScrollPosition = GetRowScrollPosition(_currentIndex, posType);
             float time = 0;
             while (time < 1f)
             {
@@ -81,7 +81,7 @@ namespace Longshilin.RecyclingListView
 
         public override void ScrollToRow(int row, ScrollPosType posType)
         {
-            _currentIndex = row + StartOffsetIndex;
+            _currentIndex = row;
             base.ScrollToRow(_currentIndex, posType);
         }
 

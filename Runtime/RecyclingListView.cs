@@ -225,7 +225,7 @@ namespace Longshilin.RecyclingListView
                 case ScrollPosType.Center:
                 {
                     // 目标行的中心位置与列表顶部的距离
-                    float rowCentre = row * rowHeight + 0.5f * ChildWidthOrHeight();
+                    float rowCentre = StartOffset + row * rowHeight + 0.5f * ChildWidthOrHeight();
                     // 视口中心位置
                     float halfVpHeight = vpHeight * 0.5f;
 
