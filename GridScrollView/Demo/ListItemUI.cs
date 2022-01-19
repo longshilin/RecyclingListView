@@ -18,8 +18,7 @@ namespace Example_Grid
         {
             m_buttonUI.onClick.AddListener(() =>
             {
-                m_data.IsShow = !m_data.IsShow;
-                m_data.Callback?.Invoke(m_data);
+                m_data.Callback?.Invoke(m_data.ItemIndex);
             });
         }
 

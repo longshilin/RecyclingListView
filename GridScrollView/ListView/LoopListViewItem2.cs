@@ -31,6 +31,7 @@ namespace SuperScrollView
         int mUserIntData2 = 0;
         string mUserStringData1 = null;
         string mUserStringData2 = null;
+        bool mIsShow = false;
 
         public object UserObjectData
         {
@@ -56,6 +57,12 @@ namespace SuperScrollView
         {
             get { return mUserStringData2; }
             set { mUserStringData2 = value; }
+        }
+
+        public bool IsShow
+        {
+            get { return mIsShow; }
+            set { mIsShow = value; }
         }
 
         public float DistanceWithViewPortSnapCenter

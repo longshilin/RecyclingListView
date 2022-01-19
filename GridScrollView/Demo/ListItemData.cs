@@ -7,12 +7,21 @@ namespace Example_Grid
 		private readonly string m_name;
 
 		public string Name { get { return m_name; } }
-        public bool IsShow;
-        public UnityAction<ListItemData> Callback;
+        public int Index;
+        public int ItemIndex;
+        public UnityAction<int> Callback;
 
-		public ListItemData( string name)
+		public ListItemData( string name, int itemIndex)
 		{
 			m_name = name;
+            ItemIndex = itemIndex;
         }
+
+        public void SetIndex(int index)
+        {
+            Index = index;
+            
+        }
+            
 	}
 }
