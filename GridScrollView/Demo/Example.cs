@@ -12,6 +12,7 @@ namespace Example_Grid
         [SerializeField] private LoopListView2 m_view = null;
         [SerializeField] private GameObject m_original = null;
         [SerializeField] private int m_countPerRow = 0;
+        [SerializeField] private Transform m_tip = null;
 
         private ListItemData[] m_list;
         private int isShowIndex = -1; // 选择的item所在行号
@@ -42,7 +43,7 @@ namespace Example_Grid
 
             var itemObj = view.NewListViewItem(m_original.name);
             var children = itemObj.GetComponentsInChildren<ListItemUI>(true);
-            var tip = itemObj.CachedRectTransform.Find("Tip");
+            // var tip = itemObj.CachedRectTransform.Find("Tip");
 
             for (int i = 0; i < m_countPerRow; i++)
             {
@@ -101,8 +102,10 @@ namespace Example_Grid
                             isShowItemIndex = -1;
                         }
 
-                        tip.gameObject.SetActive(itemObj.IsShow);
-                        tip.GetComponentInChildren<Text>().text = data.Name;
+                        m_tip.gameObject.SetActive(itemObj.IsShow);
+                        m_tip.GetComponentInChildren<Text>().text = data.Name;
+                        m_tip.parent = itemObj.transform;
+                        m_tip.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                         itemObj.CachedRectTransform.sizeDelta = new Vector2(0, itemObj.IsShow ? 500 : 286);
                         m_view.RefreshItemByItemIndex(index);
                         // 当标签的顶部和底部都可以完整出现是，不需要执行强制跳转
@@ -118,15 +121,18 @@ namespace Example_Grid
                         {
                             // 当前item已经是展示状态
                             itemObj.IsShow = true;
-                            tip.gameObject.SetActive(itemObj.IsShow);
-                            tip.GetComponentInChildren<Text>().text = data.Name;
+                            m_tip.gameObject.SetActive(itemObj.IsShow);
+                            m_tip.GetComponentInChildren<Text>().text = data.Name;
+                            m_tip.parent = itemObj.transform;
+                            m_tip.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                             itemObj.CachedRectTransform.sizeDelta = new Vector2(0, itemObj.IsShow ? 500 : 286);
                         }
                     }
                     else
                     {
                         // 当前item已经是展示状态
-                        tip.gameObject.SetActive(false);
+                        m_tip.gameObject.SetActive(false);
+                        m_tip.parent = m_view.transform;
                         itemObj.CachedRectTransform.sizeDelta = new Vector2(0, 286);
                     }
                 }
