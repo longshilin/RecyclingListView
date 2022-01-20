@@ -81,8 +81,10 @@ namespace Example_Grid
                             if (preItemObj != null)
                             {
                                 preItemObj.IsShow = false;
-                                var preTip = preItemObj.CachedRectTransform.Find("Tip");
-                                preTip.gameObject.SetActive(preItemObj.IsShow);
+                                // preTip做一个折叠隐藏的效果
+                                Debug.Log("preTip做一个折叠隐藏的效果");
+                                // var preTip = preItemObj.CachedRectTransform.Find("Tip");
+                                // preTip.gameObject.SetActive(preItemObj.IsShow);
                                 preItemObj.CachedRectTransform.sizeDelta = new Vector2(0, preItemObj.IsShow ? 500 : 286);
                             }
 
@@ -102,6 +104,14 @@ namespace Example_Grid
                             isShowItemIndex = -1;
                         }
 
+                        if (itemObj.IsShow)
+                        {
+                            Debug.Log("Tip做一个拉伸展开的效果");
+                        }
+                        else
+                        {
+                            Debug.Log("Tip做一个折叠隐藏的效果");
+                        }
                         m_tip.gameObject.SetActive(itemObj.IsShow);
                         m_tip.GetComponentInChildren<Text>().text = data.Name;
                         m_tip.parent = itemObj.transform;
